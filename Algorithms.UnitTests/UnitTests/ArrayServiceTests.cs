@@ -35,6 +35,8 @@ namespace Algorithms.UnitTests.UnitTests
 
         [Test]
         public void FindTwoSum_ReturnsEmptyArray_WhenNoPairExists()
+
+
         {
             // Arrange
             int[] numbers = { 1, 2, 3 };
@@ -47,7 +49,72 @@ namespace Algorithms.UnitTests.UnitTests
             Assert.IsEmpty(result); // No two numbers add up to 10, so the result should be an empty array
         }
 
+        [Test]
+        public void FindMaximumSumSubarray_AllPositiveNumbers_ReturnsSumOfAllElements()
+        {
+            // Arrange
+            int[] array = { 1, 2, 3, 4, 5 };
+
+            // Act
+            int result = _arrayService.FindMaximumSumSubarray(array);
+
+            // Assert
+            Assert.AreEqual(15, result); // Sum of all elements is 15
+        }
+
+        [Test]
+        public void FindMaximumSumSubarray_AllNegativeNumbers_ReturnsMaximumSingleElement()
+        {
+            // Arrange
+            int[] array = { -5, -1, -8, -9 };
+
+            // Act
+            int result = _arrayService.FindMaximumSumSubarray(array);
+
+            // Assert
+            Assert.AreEqual(-1, result); // Maximum element is -1
+        }
+
+        [Test]
+        public void FindMaximumSumSubarray_MixedPositiveAndNegativeNumbers_ReturnsMaxSumSubarray()
+        {
+            // Arrange
+            int[] array = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+
+            // Act
+            int result = _arrayService.FindMaximumSumSubarray(array);
+
+            // Assert
+            Assert.AreEqual(6, result); // The subarray [4, -1, 2, 1] has the maximum sum of 6
+        }
+
+        [Test]
+        public void FindMaximumSumSubarray_EmptyArray_ReturnsZero()
+        {
+            // Arrange
+            int[] array = new int[] { };
+
+            // Act
+            int result = _arrayService.FindMaximumSumSubarray(array);
+
+            // Assert
+            Assert.AreEqual(0, result); // An empty array should return 0 or some default value
+        }
+
+        [Test]
+        public void FindMaximumSumSubarray_SingleElementArray_ReturnsThatElement()
+        {
+            // Arrange
+            int[] array = { 5 };
+
+            // Act
+            int result = _arrayService.FindMaximumSumSubarray(array);
+
+            // Assert
+            Assert.AreEqual(5, result); // The single element should be returned as is
+        }
     }
+
 
 
 }

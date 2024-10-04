@@ -10,5 +10,6 @@ namespace Algorithms.Services.Array
     {
         //Two Sum: Given an array of integers, find two numbers such that they add up to a specific target number
         int[] FindTwoSum(int[] numbers, int target);
+        int FindMaximumSumSubarray(int[] array);
     }
 }

@@ -32,5 +32,22 @@ namespace Algorithms.Services.Array
             }
             return new int[0];
         }
+
+        public int FindMaximumSumSubarray(int[] array)
+        {
+            if (array.Length == 0)
+            {
+                return 0;
+            }
+            int maxSum = array[0];
+            int currentSum = array[0];
+            for (int i = 1; i < array.Length; i++)
+            {
+                currentSum = Math.Max(array[i], currentSum + array[i]);
+                maxSum = Math.Max(currentSum, maxSum);
+            }
+
+            return maxSum;
+        }
     }
 }
