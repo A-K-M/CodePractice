@@ -11,15 +11,7 @@ namespace Algorithms
     {
         public static void Main(string[] args)
         {
-            #region Sliding Window
-            IAlgoService algoService = new AlgoService();
-            int[] SWArray = new int[] { 1, 3, -1, -3, 5, 3, 6, 7 };
-            int maxSum = algoService.MaxSumOfSubarray(SWArray, 3);
-
-            int minLength = algoService.MinLengthSubarrayWithSum(SWArray, 2);
-
-
-            #endregion
+           
         }
     }
 }
