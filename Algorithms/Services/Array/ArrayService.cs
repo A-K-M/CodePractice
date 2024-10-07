@@ -49,5 +49,34 @@ namespace Algorithms.Services.Array
 
             return maxSum;
         }
+
+        public int FindWaterTrapped(int[] bars)
+        {
+            if (bars.Length == 0) return 0;
+
+            int left = 0;
+            int right = bars.Length - 1;
+
+            int leftMax = bars[left];
+            int rightMax = bars[right];
+            int water = 0;
+
+            while (left < right)
+            {
+                if (leftMax <= rightMax)
+                {
+                    left++;
+                    leftMax = Math.Max(leftMax, bars[left]);
+                    water += Math.Max(0, leftMax - bars[left]);
+                }
+                else
+                {
+                    right--;
+                    rightMax = Math.Max(rightMax, bars[right]);
+                    water += Math.Max(0, rightMax - bars[right]);
+                }
+            }
+            return water;
+        }
     }
 }

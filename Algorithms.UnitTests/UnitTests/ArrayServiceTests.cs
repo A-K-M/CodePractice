@@ -19,6 +19,8 @@ namespace Algorithms.UnitTests.UnitTests
         {
             _arrayService = new ArrayService();
         }
+
+        #region FindTwoSum
         [Test]
         public void FindTwoSum_ReturnsCorrectIndices()
         {
@@ -49,6 +51,10 @@ namespace Algorithms.UnitTests.UnitTests
             Assert.IsEmpty(result); // No two numbers add up to 10, so the result should be an empty array
         }
 
+        #endregion
+
+        #region FindMaximumSumSubarray
+
         [Test]
         public void FindMaximumSumSubarray_AllPositiveNumbers_ReturnsSumOfAllElements()
         {
@@ -59,7 +65,7 @@ namespace Algorithms.UnitTests.UnitTests
             int result = _arrayService.FindMaximumSumSubarray(array);
 
             // Assert
-            Assert.AreEqual(15, result); // Sum of all elements is 15
+            Assert.That(result, Is.EqualTo(15)); // Sum of all elements is 15
         }
 
         [Test]
@@ -72,7 +78,7 @@ namespace Algorithms.UnitTests.UnitTests
             int result = _arrayService.FindMaximumSumSubarray(array);
 
             // Assert
-            Assert.AreEqual(-1, result); // Maximum element is -1
+            Assert.That(result, Is.EqualTo(-1)); // Maximum element is -1
         }
 
         [Test]
@@ -85,7 +91,7 @@ namespace Algorithms.UnitTests.UnitTests
             int result = _arrayService.FindMaximumSumSubarray(array);
 
             // Assert
-            Assert.AreEqual(6, result); // The subarray [4, -1, 2, 1] has the maximum sum of 6
+            Assert.That(result, Is.EqualTo(6)); // The subarray [4, -1, 2, 1] has the maximum sum of 6
         }
 
         [Test]
@@ -98,7 +104,7 @@ namespace Algorithms.UnitTests.UnitTests
             int result = _arrayService.FindMaximumSumSubarray(array);
 
             // Assert
-            Assert.AreEqual(0, result); // An empty array should return 0 or some default value
+            Assert.That(result, Is.EqualTo(0)); // An empty array should return 0 or some default value
         }
 
         [Test]
@@ -111,8 +117,117 @@ namespace Algorithms.UnitTests.UnitTests
             int result = _arrayService.FindMaximumSumSubarray(array);
 
             // Assert
-            Assert.AreEqual(5, result); // The single element should be returned as is
+            Assert.That(result, Is.EqualTo(5)); // The single element should be returned as is
         }
+
+        #endregion
+
+        #region FindWaterTrapped
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenNoBars()
+        {
+            // Arrange
+            int[] bars = new int[] { };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenSingleBar()
+        {
+            // Arrange
+            int[] bars = new int[] { 4 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenTwoBars()
+        {
+            // Arrange
+            int[] bars = new int[] { 4, 5 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenBarsInDescendingOrder()
+        {
+            // Arrange
+            int[] bars = new int[] { 5, 4, 3, 2, 1 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenBarsInAscendingOrder()
+        {
+            // Arrange
+            int[] bars = new int[] { 1, 2, 3, 4, 5 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnZero_WhenBarsAreFlat()
+        {
+            // Arrange
+            int[] bars = new int[] { 3, 3, 3, 3, 3 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnCorrectValue_WhenClassicTrappingScenario()
+        {
+            // Arrange
+            int[] bars = new int[] { 3, 0, 3 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(3)); // Water trapped: 3 units
+        }
+
+        [Test]
+        public void FindWaterTrapped_ShouldReturnCorrectValue_WhenComplexCase()
+        {
+            // Arrange
+            int[] bars = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+
+            // Act
+            int result = _arrayService.FindWaterTrapped(bars);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(6)); // Water trapped: 6 units
+        }
+        #endregion
+
     }
 
 
