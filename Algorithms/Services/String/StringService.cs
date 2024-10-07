@@ -34,4 +34,45 @@ public class StringService : IStringService
         return maxLength;
     }
 
+    public string LongestPalindrome(string s)
+    {
+        // Edge case: if the string is empty or has only one character, return it as is
+        if (string.IsNullOrEmpty(s)) return s;
+
+        int start = 0;  // Start index of the longest palindromic substring
+        int maxLength = 1;  // Length of the longest palindromic substring
+
+        // Helper function to expand around the center and update the longest palindrome
+        void ExpandFromMiddle(int left, int right)
+        {
+            // Expand while the characters on both sides are equal (palindromic) and within bounds
+            while (left >= 0 && right < s.Length && s[left] == s[right])
+            {
+                int currentLength = right - left + 1;  // Current palindrome length
+
+                // If the current palindrome is longer than the previous longest one, update
+                if (currentLength > maxLength)
+                {
+                    maxLength = currentLength;
+                    start = left;  // Update the start index of the longest palindrome
+                }
+
+                left--;  // Move left pointer outward
+                right++;  // Move right pointer outward
+            }
+        }
+
+        // Loop through each character in the string
+        for (int i = 0; i < s.Length; i++)
+        {
+            // Expand around the center for odd-length palindromes (single character center)
+            ExpandFromMiddle(i - 1, i + 1);
+
+            // Expand around the center for even-length palindromes (two characters center)
+            ExpandFromMiddle(i, i + 1);
+        }
+
+        // Return the longest palindromic substring found
+        return s.Substring(start, maxLength);
+    }
 }
