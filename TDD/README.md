@@ -40,19 +40,18 @@ This will execute all the tests and provide a report on the test results, indica
 ## Code Structure
 
 ```
-StringUtils-TDD/
-│
+TDD/
+├── README.md                 # TDD Project documentation
 ├── TDD.Interfaces/
 │   └── IStringUtils.cs       # Interface for the string utility methods
 │
-├── TDD/
+├── TDD.Services/
 │   └── StringUtils.cs        # Implementation of IStringUtils
-│
-├── TDD.Tests/
-│   ├── UnitTests/
+└── 
+TDD.Tests/
+├─ UnitTests/
 │   │   └── StringUtilsMoqTests.cs   # Unit tests using xUnit and Moq
-│
-└── README.md                 # Project documentation
+└── 
 ```
 
 ### Implemented Methods
